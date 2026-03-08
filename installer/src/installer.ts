@@ -1,6 +1,6 @@
 /**
- * qa-skills v3 — Interactive CLI for installing QA Skills into coding agents.
- * Single entry point: `qa-skills init` (or bare `qa-skills`).
+ * create-qa-skills v3 — Interactive CLI for installing QA Skills into coding agents.
+ * Usage: `npm init qa-skills` or `npx create-qa-skills`.
  * Skills are bundled with the npm package for zero-config usage on fresh machines.
  */
 
@@ -310,7 +310,7 @@ export async function listSkills(): Promise<void> {
 
 export async function runInteractive(opts: InstallerOptions = {}): Promise<void> {
   printBanner();
-  intro(chalk.bgCyan.black(' qa-skills '));
+  intro(chalk.bgCyan.black(' create-qa-skills '));
 
   // 1. Resolve source
   const sourceDir = await resolveSourceDir();

@@ -1,25 +1,35 @@
-# qa-skills
+# create-qa-skills
 
 Interactive CLI installer for the **QA Skills Ecosystem** — install 56 specialized QA agent skills into Cursor, Claude Code, Codex, Cline, GitHub Copilot, Windsurf, and more.
 
 ## Quick Start
 
 ```bash
-npx qa-skills init
+npm init qa-skills
 ```
 
-Or install globally:
+This works like `npm init wdio` or `npm init vite` — npm auto-installs and runs the initializer without prompts.
+
+You can also specify a target directory:
 
 ```bash
-npm install -g qa-skills
+npm init qa-skills ./my-project
+```
+
+### Alternative usage
+
+```bash
+# Explicit npx
+npx create-qa-skills
+
+# Global install
+npm install -g create-qa-skills
 qa-skills init
 ```
 
-Running bare `qa-skills` is equivalent to `qa-skills init`.
-
 ## Features
 
-- **Single `init` command** — one entry point for fresh machines and existing setups
+- **`npm init` compatible** — standard npm initializer convention, no confirmation prompts
 - **Skills bundled** — works offline, no need to clone the repo first
 - **Interactive prompts** — select skills with descriptions, grouped by category
 - **Multi-agent support** — install to 11+ coding agents simultaneously
@@ -49,7 +59,7 @@ Running bare `qa-skills` is equivalent to `qa-skills init`.
 ## CLI Options
 
 ```
-qa-skills init [options]
+create-qa-skills [init] [directory] [options]
 
 Options:
   -a, --agent <agents...>   Target specific agents (e.g., cursor claude-code)
@@ -66,22 +76,25 @@ Options:
 
 ```bash
 # Interactive — pick skills, agents, options
-qa-skills init
+npm init qa-skills
+
+# Initialize in a specific directory
+npm init qa-skills ./my-project
 
 # List available skills
-qa-skills init --list
+npx create-qa-skills --list
 
 # Install specific skills to Cursor (non-interactive)
-qa-skills init -a cursor -s playwright-ts-writer jest-writer -y
+npm init qa-skills -- -a cursor -s playwright-ts-writer jest-writer -y
 
 # Install all skills to multiple agents
-qa-skills init -a cursor claude-code codex -y
+npm init qa-skills -- -a cursor claude-code codex -y
 
 # Install globally with copy method
-qa-skills init -g --copy -a cursor -s orchestrator -y
+npm init qa-skills -- -g --copy -a cursor -s orchestrator -y
 
-# Shorthand (init is the default command)
-qa-skills -a cursor -s jest-writer -y
+# After global install, shorthand works too
+qa-skills init -a cursor -s jest-writer -y
 ```
 
 ## Skill Categories
@@ -136,7 +149,7 @@ Many teams gitignore `.cursor/`, `.windsurf/`, etc. The installer handles this g
 
 | Artifact | `.cursor/` gitignored | `.cursor/` committed |
 |----------|----------------------|---------------------|
-| Skills | Installed locally, each dev runs `qa-skills init` | Committed with project |
+| Skills | Installed locally, each dev runs `npm init qa-skills` | Committed with project |
 | Structure rule | Written to `AGENTS.md` only | Written to both `AGENTS.md` and `.cursor/rules/` |
 | MCP config | Installed locally | Committed with project |
 
@@ -151,7 +164,7 @@ The installer finds skills in this priority order:
 
 1. `QA_SKILLS_SOURCE` env var (explicit override)
 2. Monorepo sibling: `../.cursor/skills/` (author developing locally)
-3. Bundled: `skills/` inside the npm package (fresh machine via `npx`)
+3. Bundled: `skills/` inside the npm package (fresh machine via `npm init`)
 
 ## skills.sh Compatibility
 
@@ -162,6 +175,16 @@ npx skills add owner/qa-skills
 ```
 
 The `.cursor/skills/` directory is auto-discovered by the `skills` CLI.
+
+## Migration from `qa-skills`
+
+If you previously used `npx qa-skills init`, switch to:
+
+```bash
+npm init qa-skills
+```
+
+The global `qa-skills` command still works after `npm install -g create-qa-skills`.
 
 ## License
 

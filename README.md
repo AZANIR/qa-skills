@@ -5,15 +5,15 @@
 ## Quick Start
 
 ```bash
-npx qa-skills init
+npm init qa-skills
 ```
 
-This single command works on any machine with npm — skills are bundled with the package. Pick skills interactively, choose your agent, and go.
+Works on any machine with npm — skills are bundled with the package. Pick skills interactively, choose your agent, and go. No confirmation prompts, just like `npm init vite` or `npm init wdio`.
 
 **Non-interactive (CI/CD):**
 
 ```bash
-npx qa-skills init -a cursor -s playwright-ts-writer jest-writer -y
+npm init qa-skills -- -a cursor -s playwright-ts-writer jest-writer -y
 ```
 
 **Via [skills.sh](https://skills.sh):**
@@ -159,7 +159,7 @@ qa-skills/
 │   ├── skills/              # 56 skill directories — source of truth
 │   ├── rules/               # Cursor rules (.mdc)
 │   └── mcp.json             # MCP server configuration
-├── installer/               # qa-skills CLI (npm package)
+├── installer/               # create-qa-skills CLI (npm package)
 │   ├── src/
 │   │   ├── installer.ts     # Main interactive/non-interactive flow
 │   │   ├── dependencies.ts  # Skill dependency map and resolver
@@ -179,7 +179,7 @@ qa-skills/
 ## Installer CLI
 
 ```bash
-qa-skills init [options]
+npm init qa-skills [directory] [-- options]
 
 Options:
   -a, --agent <agents...>   Target agents (cursor, claude-code, codex, ...)
@@ -191,7 +191,7 @@ Options:
   -V, --version             Show version
 ```
 
-Running bare `qa-skills` is equivalent to `qa-skills init`.
+Also available as `npx create-qa-skills` or, after global install, `qa-skills init`.
 
 See [installer/README.md](installer/README.md) for full documentation.
 
