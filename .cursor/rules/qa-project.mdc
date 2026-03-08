@@ -1,0 +1,38 @@
+---
+description: Global QA project conventions
+alwaysApply: true
+---
+
+# QA Project Conventions
+
+## Standards Alignment
+
+All skills follow:
+
+- **ISO/IEC/IEEE 29148** — Requirements engineering
+- **ISO/IEC/IEEE 29119-3/4** — Test documentation and techniques
+- **ISO/IEC 25010** — Quality model (NFR analysis)
+- **WCAG 2.2** — Accessibility testing
+- **OWASP WSTG** — Security testing
+
+## Secrets Management
+
+- Store API keys and tokens in `.env` (never in code or skill files)
+- Add `.env` to `.gitignore`
+- Reference via `process.env` or `os.environ` in scripts
+
+## Quality Checklists
+
+- Quality checklists are **mandatory** before each deliverable
+- Skills must verify output against format and standards
+
+## Diagram Generator
+
+- `qa-diagram-generator` is **embeddable** — other skills reference its patterns for inline diagrams
+- Use `references/` from diagram-generator for: flowchart, sequence, gantt, c4-model, er-diagram
+
+## Test Outputs
+
+- Primary formats: **Markdown** and **JSON**
+- Reports: HTML/markdown with charts
+- Traceability: Requirement ID → Test Case ID → Automation status

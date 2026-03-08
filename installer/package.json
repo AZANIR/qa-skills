@@ -1,0 +1,40 @@
+{
+  "name": "qa-skills",
+  "version": "3.0.0",
+  "description": "Interactive CLI installer for QA Skills Ecosystem — install skills into Cursor, Claude Code, Codex, Cline, Copilot, Windsurf, and 5+ more agents",
+  "type": "module",
+  "bin": {
+    "qa-skills": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "skills/",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "node scripts/bundle-skills.js",
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node bin/cli.js"
+  },
+  "keywords": [
+    "qa", "testing", "automation", "skills",
+    "cursor", "copilot", "claude", "windsurf",
+    "codex", "cline", "opencode", "gemini",
+    "agent-skills"
+  ],
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "chalk": "^5.3.0",
+    "commander": "^13.0.0",
+    "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

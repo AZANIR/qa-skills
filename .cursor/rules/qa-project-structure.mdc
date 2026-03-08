@@ -1,0 +1,66 @@
+---
+description: QA project artifact routing — maps each skill to its output directory
+globs: "**"
+alwaysApply: true
+---
+
+# QA Project Structure
+
+When generating QA artifacts, save outputs to these project-relative directories.
+Create the directory on first use if it does not exist.
+
+| Skill | Output Directory | File Pattern |
+|-------|-----------------|--------------|
+| qa-requirements-generator | `docs/requirements/` | `REQ-{feature}.md` |
+| qa-spec-writer | `docs/specs/` | `SPEC-{feature}.md` |
+| qa-plan-creator | `docs/plans/` | `{plan-type}-plan.md` |
+| qa-test-strategy | `docs/plans/` | `test-strategy.md` |
+| qa-discovery-interview | `docs/briefs/` | `brief-{project}.md` |
+| qa-bug-ticket-creator | `docs/bug-tickets/` | `BUG-{id}.md` |
+| qa-diagram-generator | `docs/diagrams/` | `{type}-{name}.md` |
+| qa-nfr-analyst | `docs/nfr/` | `NFR-{feature}.md` |
+| qa-api-contract-curator | `docs/api-contracts/` | `{service}.openapi.yaml` |
+| qa-test-doc-compiler | `docs/compiled/` | `{doc-type}-{date}.md` |
+| qa-testcase-from-docs | `test-cases/from-docs/` | `TC-{feature}.md` |
+| qa-testcase-from-ui | `test-cases/from-ui/` | `TC-UI-{page}.md` |
+| qa-manual-test-designer | `test-cases/manual/` | `MTC-{feature}.md` |
+| qa-jest-writer | `tests/unit/` | `{name}.test.ts` |
+| qa-vitest-writer | `tests/unit/` | `{name}.test.ts` |
+| qa-pytest-writer | `tests/unit/` | `test_{name}.py` |
+| qa-junit5-writer | `tests/unit/` | `{Name}Test.java` |
+| qa-playwright-ts-writer | `tests/e2e/` | `{name}.spec.ts` |
+| qa-playwright-py-writer | `tests/e2e/` | `test_{name}.py` |
+| qa-cypress-writer | `tests/e2e/` | `{name}.cy.ts` |
+| qa-selenium-py-writer | `tests/e2e/` | `test_{name}.py` |
+| qa-selenium-java-writer | `tests/e2e/` | `{Name}Test.java` |
+| qa-webdriverio-writer | `tests/e2e/` | `{name}.e2e.ts` |
+| qa-codeceptjs-writer | `tests/e2e/` | `{name}.test.ts` |
+| qa-robot-framework-writer | `tests/e2e/` | `{name}.robot` |
+| qa-supertest-writer | `tests/api/` | `{name}.test.ts` |
+| qa-httpx-writer | `tests/api/` | `test_{name}.py` |
+| qa-rest-assured-writer | `tests/api/` | `{Name}ApiTest.java` |
+| qa-spring-test-writer | `tests/integration/` | `{Name}IntegrationTest.java` |
+| qa-k6-writer | `tests/performance/` | `{name}.k6.js` |
+| qa-locust-writer | `tests/performance/` | `locustfile_{name}.py` |
+| qa-jmeter-writer | `tests/performance/` | `{name}.jmx` |
+| qa-security-test-writer | `tests/security/` | `{name}.security.ts` |
+| qa-accessibility-test-writer | `tests/accessibility/` | `{name}.a11y.ts` |
+| qa-visual-regression-writer | `tests/visual/` | `{name}.visual.ts` |
+| qa-mobile-test-writer | `tests/mobile/` | `{name}.mobile.ts` |
+| qa-pact-writer | `tests/contracts/` | `{consumer}-{provider}.pact.ts` |
+| qa-test-reporter | `reports/test-runs/` | `report-{date}.md` |
+| qa-coverage-analyzer | `reports/coverage/` | `coverage-{date}.md` |
+| qa-risk-analyzer | `reports/risk/` | `risk-{feature}.md` |
+| qa-spec-auditor | `reports/audit/` | `audit-{date}.md` |
+| qa-flaky-detector | `reports/flaky/` | `flaky-{date}.md` |
+| qa-test-reviewer | `reports/reviews/` | `review-{file}.md` |
+| qa-changelog-analyzer | `reports/changelog/` | `changelog-{date}.md` |
+| qa-data-factory | `data/fixtures/` | `{entity}.fixture.ts` |
+
+## Conventions
+
+- All paths are relative to the project root.
+- Create directories on-demand when producing the first artifact — do NOT pre-create empty folders.
+- Test writers follow framework conventions for file naming within their output directory.
+- Reports include a date stamp in the filename for traceability.
+- Diagrams are saved as Mermaid-in-Markdown files.

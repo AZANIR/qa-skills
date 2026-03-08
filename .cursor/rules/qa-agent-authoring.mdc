@@ -1,0 +1,64 @@
+---
+description: Standards for creating and orchestrating QA agents
+globs: .cursor/skills/**
+alwaysApply: false
+---
+
+# QA Agent Authoring Standards
+
+## Agent Scope Documentation
+
+Every agent skill MUST explicitly document:
+
+### Can Do
+- Actions the agent is authorized and capable of performing
+- Supported input formats and sources
+- Output formats and delivery methods
+
+### Cannot Do
+- Limitations (e.g., no live DB writes, no production access)
+- Unsupported frameworks or scenarios
+- Dependencies on external services not configured
+
+### Will Not Do
+- Actions explicitly out of scope (e.g., deploy to prod, modify secrets)
+- Ethical boundaries
+
+## Handoff Chain Definitions
+
+When an agent completes work that another agent should continue:
+
+1. **Document the handoff** in the skill's workflow
+2. **Specify output format** the next agent expects
+3. **Include traceability** (IDs, links) for continuity
+
+Example chain: `qa-testcase-from-docs` → `qa-playwright-ts-writer` (test case IDs preserved)
+
+## MCP Tool Access Rules
+
+- Document which MCP tools the skill uses (Playwright, GitHub, Filesystem, etc.)
+- Never assume tools are available — check or gracefully degrade
+- API keys MUST come from `.env`, never hardcoded
+
+## Output Format Standards
+
+- **Test cases:** Markdown tables or JSON per project convention
+- **Reports:** Markdown with optional JSON for machine parsing
+- **Diagrams:** Mermaid syntax (embedding `qa-diagram-generator` patterns when needed)
+
+## Troubleshooting Table Requirements
+
+Every skill MUST include a troubleshooting section:
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Example failure | Root cause | Resolution steps |
+
+## Tool Permission Ceilings
+
+Agents must not exceed these ceilings unless explicitly authorized:
+
+- **Read:** Code, docs, configs, test results
+- **Write:** Test files, reports, docs, issues (via MCP)
+- **Execute:** Test runs, scripts in sandbox
+- **Never:** Production DB writes, secret modification, destructive operations

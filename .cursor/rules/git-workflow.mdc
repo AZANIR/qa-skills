@@ -1,0 +1,95 @@
+---
+description: Git branching strategy and Conventional Commits for ArtStroy
+alwaysApply: true
+---
+
+# Git Workflow
+
+## Branch Policy
+
+**NEVER commit directly to `master`.** All work happens on feature branches.
+
+### Branch Naming
+
+| Type | Pattern | Example |
+|---|---|---|
+| Article | `article/{slug}` | `article/playwright-visual-testing` |
+| Feature | `feat/{short-description}` | `feat/add-search-filters` |
+| Bug fix | `fix/{short-description}` | `fix/broken-og-image` |
+| Design/UI | `style/{short-description}` | `style/card-hover-effects` |
+| Docs | `docs/{short-description}` | `docs/update-readme` |
+| Refactor | `refactor/{short-description}` | `refactor/layout-components` |
+| CI/CD | `ci/{short-description}` | `ci/optimize-docker-build` |
+
+Use lowercase, hyphens as separators. Keep branch names short (2-4 words).
+
+### Before Starting Work
+
+1. Check current branch: `git branch --show-current`
+2. If on `master` — create and switch to a new branch before making changes
+3. Pull latest master first: `git pull origin master`
+4. Create branch: `git checkout -b {type}/{description}`
+
+## Conventional Commits
+
+All commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+
+### Format
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types
+
+| Type | When to use |
+|---|---|
+| `feat` | New feature or new article |
+| `fix` | Bug fix |
+| `docs` | Documentation only |
+| `style` | CSS, design, formatting (no logic change) |
+| `refactor` | Code restructuring (no feature/fix) |
+| `perf` | Performance improvement |
+| `test` | Adding or updating tests |
+| `ci` | CI/CD pipeline changes (deploy.yml, Docker) |
+| `chore` | Maintenance, dependency updates, config |
+| `content` | Article content edits (not new articles) |
+
+### Scopes (optional)
+
+| Scope | Applies to |
+|---|---|
+| `article` | Blog article content |
+| `ui` | Frontend components |
+| `layout` | Astro layouts |
+| `seo` | Meta tags, schema.org, sitemap |
+| `config` | Project configuration |
+| `deps` | Dependencies |
+| `docker` | Docker/deploy infrastructure |
+| `skill` | Cursor skills |
+
+### Examples
+
+```
+feat(article): add Playwright visual testing guide
+fix(ui): card image overflow on mobile
+style(layout): update footer spacing and colors
+docs: update pipeline documentation
+refactor(ui): extract ArticleCard into separate component
+ci(docker): optimize multi-stage build
+chore(deps): update astro to 5.4.2
+content(article): fix typos in OWASP article
+feat(skill): add conventional-commits skill
+```
+
+### Rules
+
+- Description starts with lowercase verb (add, fix, update, remove, refactor)
+- Max 72 characters for the first line
+- No period at the end of the description
+- Body explains **why**, not **what** (the diff shows what)
+- Use `BREAKING CHANGE:` footer when introducing breaking changes

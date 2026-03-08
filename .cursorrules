@@ -1,0 +1,43 @@
+# QA Skills Ecosystem
+
+## Project Overview
+This is a QA automation skills ecosystem for Cursor IDE. It contains 45+ specialized agent skills covering the full QA lifecycle: documentation, test case design, test writing (TypeScript + Python + specialized), reporting, analysis, and orchestration.
+
+## Architecture
+- Skills live in `.cursor/skills/qa-{name}/SKILL.md`
+- Rules live in `.cursor/rules/*.mdc`
+- MCP servers configured in `.cursor/mcp.json`
+- API keys stored in `.env` (never hardcode)
+- Templates in `templates/`
+- Memory bank in `memory-bank/`
+
+## Skill Quality Standards
+Every skill MUST include:
+1. YAML frontmatter with `name` and `description`
+2. Decision autonomy levels (can do / cannot do / will not do)
+3. Quality checklist before each deliverable
+4. Troubleshooting table (Symptom | Cause | Fix)
+5. Progressive loading (SKILL.md < 500 lines, details in references/)
+
+## Naming Conventions
+- Skills: `qa-{purpose}` (lowercase, hyphens)
+- Rules: `qa-{domain}.mdc`
+- References: `references/{topic}.md`
+
+## Key Patterns
+- Diagram generator is embeddable -- other skills reference its patterns
+- Task creator works standalone AND paired with bug-ticket-creator
+- Playwright writers support record mode (live browser generation)
+- Test healer auto-fixes broken selectors/assertions
+
+## Languages & Frameworks
+- TypeScript: Jest, Vitest, Playwright, Cypress, WebdriverIO, CodeceptJS, Supertest
+- Python: pytest, Playwright, Selenium, Robot Framework, httpx
+- Cross-language: k6, Locust, JMeter, OWASP ZAP, axe-core, Pact, Appium
+
+## Standards
+- ISO/IEC/IEEE 29148 (requirements)
+- ISO/IEC/IEEE 29119-3/4 (test documentation & techniques)
+- ISO/IEC 25010 (quality model)
+- WCAG 2.2 (accessibility)
+- OWASP WSTG (security testing)

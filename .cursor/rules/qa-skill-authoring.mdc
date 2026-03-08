@@ -1,0 +1,64 @@
+---
+description: Standards for creating and maintaining QA skills
+globs: .cursor/skills/**
+alwaysApply: false
+---
+
+# QA Skill Authoring Standards
+
+## SKILL.md Format Specification
+
+Every skill MUST have a `SKILL.md` file at the root of its directory with:
+
+1. **YAML frontmatter** (required):
+   - `name`: Skill display name
+   - `description`: One-line purpose (used for discovery)
+
+2. **Progressive loading structure**:
+   - **L1 (Discovery):** Summary in SKILL.md — what the skill does, when to use it
+   - **L2 (Instructions):** Core workflow, decision logic, can/cannot/will-not-do
+   - **L3 (Resources):** References in `references/` — detailed patterns, examples
+
+3. **SKILL.md must be under 500 lines.** Move detailed content to `references/*.md`.
+
+## Frontmatter Requirements
+
+```yaml
+---
+name: qa-{purpose}
+description: Brief description for agent discovery
+---
+```
+
+## Progressive Loading Guidelines
+
+| Level | Location | Content |
+|-------|----------|---------|
+| L1 | SKILL.md | Trigger phrases, scope, key capabilities |
+| L2 | SKILL.md | Workflow steps, decision autonomy, quality checklist |
+| L3 | references/*.md | Patterns, examples, framework-specific details |
+
+## Resource Bundling Rules
+
+| Directory | Purpose |
+|-----------|---------|
+| `references/` | Detailed docs, patterns, technique references |
+| `scripts/` | Scaffolding, generators, utilities |
+| `templates/` | Output templates (or link to project `templates/`) |
+| `assets/` | Diagrams, examples, static content |
+| `evals/` | Self-test cases (evals.json) for skill validation |
+
+## Quality Checklist Requirements
+
+Before each deliverable, the skill MUST include a checklist:
+
+- [ ] Output matches expected format
+- [ ] Traceability links preserved (if applicable)
+- [ ] Standards compliance verified (ISO 29119, etc.)
+- [ ] No hardcoded secrets
+
+## Naming Conventions
+
+- **Skills:** `qa-{purpose}` — lowercase, hyphens (e.g., `qa-playwright-ts-writer`)
+- **References:** `{topic}.md` — descriptive filenames
+- **Scripts:** `scaffold.py`, `generate-*.js` — action-oriented names
