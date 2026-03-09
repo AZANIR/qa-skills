@@ -1,6 +1,6 @@
 {
   "name": "create-qa-skills",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "description": "Interactive CLI installer for QA Skills Ecosystem — install skills into Cursor, Claude Code, Codex, Cline, Copilot, Windsurf, and 5+ more agents",
   "type": "module",
   "bin": {
