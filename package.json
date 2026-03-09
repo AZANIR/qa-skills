@@ -34,6 +34,14 @@
     "gemini",
     "agent-skills"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AZANIR/qa-skills.git"
+  },
+  "homepage": "https://github.com/AZANIR/qa-skills#readme",
+  "bugs": {
+    "url": "https://github.com/AZANIR/qa-skills/issues"
+  },
   "license": "GPL-3.0-only",
   "dependencies": {
     "@clack/prompts": "^0.11.0",
