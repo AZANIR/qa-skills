@@ -9,7 +9,7 @@ import { runCheck } from './commands/check.js';
 program
   .name('qa-skills')
   .description('QA Skills Ecosystem — install and manage agent skills')
-  .version('3.0.2');
+  .version('3.1.1');
 
 program
   .command('init', { isDefault: true })
