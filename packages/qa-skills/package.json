@@ -1,6 +1,6 @@
 {
   "name": "qa-skills",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "QA Skills CLI — manage agent skills for Cursor, Claude Code, Codex, Copilot, Windsurf, and more",
   "type": "module",
   "bin": {
@@ -32,6 +32,6 @@
   },
   "license": "GPL-3.0-only",
   "dependencies": {
-    "create-qa-skills": "^3.1.0"
+    "create-qa-skills": "^3.1.1"
   }
 }
