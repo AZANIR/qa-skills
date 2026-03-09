@@ -1,0 +1,28 @@
+{
+  "name": "qa-skills",
+  "version": "3.0.2",
+  "description": "QA Skills CLI — manage agent skills for Cursor, Claude Code, Codex, Copilot, Windsurf, and more",
+  "type": "module",
+  "bin": {
+    "qa-skills": "./bin/cli.js"
+  },
+  "files": [
+    "bin/"
+  ],
+  "keywords": [
+    "qa",
+    "testing",
+    "automation",
+    "skills",
+    "cli",
+    "cursor",
+    "copilot",
+    "claude",
+    "windsurf",
+    "codex"
+  ],
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "create-qa-skills": "^3.0.2"
+  }
+}

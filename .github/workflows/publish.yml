@@ -56,7 +56,19 @@ jobs:
             echo "tag=latest" >> $GITHUB_OUTPUT
           fi
 
-      - name: Publish to npm
+      - name: Publish create-qa-skills to npm
+        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Sync qa-skills wrapper version
+        working-directory: packages/qa-skills
+        run: |
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+          npm pkg set "dependencies.create-qa-skills=^${{ github.event.release.tag_name }}"
+
+      - name: Publish qa-skills wrapper to npm
+        working-directory: packages/qa-skills
         run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -70,6 +82,6 @@ jobs:
       - name: Commit version bump and changelog
         if: contains(github.event.release.tag_name, 'beta') == false
         run: |
-          git add package.json package-lock.json Changelog.md
+          git add package.json package-lock.json packages/qa-skills/package.json Changelog.md
           git commit -m "chore: release ${{ github.event.release.tag_name }}" || true
           git push
