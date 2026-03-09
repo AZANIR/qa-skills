@@ -21,6 +21,15 @@
     "windsurf",
     "codex"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AZANIR/qa-skills.git",
+    "directory": "packages/qa-skills"
+  },
+  "homepage": "https://github.com/AZANIR/qa-skills#readme",
+  "bugs": {
+    "url": "https://github.com/AZANIR/qa-skills/issues"
+  },
   "license": "GPL-3.0-only",
   "dependencies": {
     "create-qa-skills": "^3.0.2"
