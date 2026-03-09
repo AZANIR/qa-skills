@@ -38,7 +38,7 @@ jobs:
           git config --global user.email "github-cd-bot@example.com"
 
       - name: Set version from release tag
-        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version --allow-same-version
 
       - name: Determine npm tag
         id: npm_tag
@@ -64,7 +64,7 @@ jobs:
       - name: Sync qa-skills wrapper version
         working-directory: packages/qa-skills
         run: |
-          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version --allow-same-version
           npm pkg set "dependencies.create-qa-skills=^${{ github.event.release.tag_name }}"
 
       - name: Publish qa-skills wrapper to npm
