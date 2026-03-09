@@ -1,0 +1,87 @@
+name: Publish QA-Skills to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Bundle skills into package
+        run: node scripts/bundle-skills.js
+
+      - name: Configure git
+        run: |
+          git config --global user.name "GitHub CD bot"
+          git config --global user.email "github-cd-bot@example.com"
+
+      - name: Set version from release tag
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
+      - name: Determine npm tag
+        id: npm_tag
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          if echo "$TAG" | grep -qE "alpha|-alpha|\.a\."; then
+            echo "tag=alpha" >> $GITHUB_OUTPUT
+          elif echo "$TAG" | grep -qE "beta|-beta|\.b\."; then
+            echo "tag=beta" >> $GITHUB_OUTPUT
+          elif echo "$TAG" | grep -qE "rc|-rc|\.rc\."; then
+            echo "tag=rc" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.release.prerelease }}" = "true" ]; then
+            echo "tag=beta" >> $GITHUB_OUTPUT
+          else
+            echo "tag=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish create-qa-skills to npm
+        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Sync qa-skills wrapper version
+        working-directory: packages/qa-skills
+        run: |
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+          npm pkg set "dependencies.create-qa-skills=^${{ github.event.release.tag_name }}"
+
+      - name: Publish qa-skills wrapper to npm
+        working-directory: packages/qa-skills
+        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Update Changelog.md
+        if: contains(github.event.release.tag_name, 'beta') == false
+        run: |
+          printf "\n\n## Release ${{ github.event.release.tag_name }}\n\n" >> Changelog.md
+          echo "${{ github.event.release.body }}" >> Changelog.md
+
+      - name: Commit version bump and changelog
+        if: contains(github.event.release.tag_name, 'beta') == false
+        run: |
+          git add package.json package-lock.json packages/qa-skills/package.json Changelog.md
+          git commit -m "chore: release ${{ github.event.release.tag_name }}" || true
+          git push

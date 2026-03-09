@@ -3,11 +3,6 @@ export interface SkillDependency {
   reason: string;
 }
 
-/**
- * Dependency map: skill ID (without qa- prefix) -> recommended companion skills.
- * Only lists strong/moderate pairings where skills genuinely enhance each other.
- * Pipeline-upstream skills (e.g. every writer recommending testcase-from-docs) are omitted.
- */
 export const SKILL_DEPENDENCIES: Record<string, SkillDependency> = {
   'requirements-generator': {
     recommended: ['discovery-interview'],
@@ -109,10 +104,6 @@ export interface DependencySuggestion {
   reason: string;
 }
 
-/**
- * Given a list of selected skill IDs (without qa- prefix),
- * returns suggestions for missing recommended companions.
- */
 export function resolveDependencies(selectedIds: string[]): DependencySuggestion[] {
   const selectedSet = new Set(selectedIds);
   const suggestions: DependencySuggestion[] = [];

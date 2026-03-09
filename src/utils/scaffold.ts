@@ -49,9 +49,6 @@ export const SKILL_OUTPUT_MAP: Record<string, { dirs: string[]; pattern: string 
   'data-factory': { dirs: ['data/fixtures'], pattern: '{entity}.fixture.ts' },
 };
 
-/**
- * Generate the qa-project-structure.mdc rule content for only the installed skills.
- */
 export function generateStructureRule(installedSkillIds: string[]): string {
   const rows: string[] = [];
 
@@ -92,9 +89,6 @@ ${rows.join('\n')}
 `;
 }
 
-/**
- * Check whether a given path prefix is covered by the project's .gitignore.
- */
 export async function isGitignored(targetDir: string, dirPrefix: string): Promise<boolean> {
   const gitignorePath = path.join(targetDir, '.gitignore');
   if (!(await fs.pathExists(gitignorePath))) return false;
@@ -117,10 +111,6 @@ export async function isGitignored(targetDir: string, dirPrefix: string): Promis
   return false;
 }
 
-/**
- * Generate a portable AGENTS.md section with the project structure convention.
- * This file lives at the project root and is always committed to git.
- */
 export function generateAgentsMdSection(installedSkillIds: string[]): string {
   const rows: string[] = [];
 
@@ -154,9 +144,6 @@ ${rows.join('\n')}
 `;
 }
 
-/**
- * Write the structure rule to the appropriate agent rules directory.
- */
 export async function writeStructureRule(
   targetDir: string,
   rulesPath: string,
@@ -171,10 +158,6 @@ export async function writeStructureRule(
   return true;
 }
 
-/**
- * Write or append the structure convention to AGENTS.md at the project root.
- * This is the gitignore-safe fallback — AGENTS.md is always committed.
- */
 export async function writeAgentsMd(
   targetDir: string,
   installedSkillIds: string[],
