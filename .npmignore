@@ -1,0 +1,10 @@
+.cursor/
+.github/
+memory-bank/
+.git/
+.cursorrules
+AGENTS.md
+src/
+scripts/
+*.ts
+tsconfig.json

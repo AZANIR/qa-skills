@@ -1,6 +1,6 @@
 {
   "name": "create-qa-skills",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Interactive CLI installer for QA Skills Ecosystem — install skills into Cursor, Claude Code, Codex, Cline, Copilot, Windsurf, and 5+ more agents",
   "type": "module",
   "bin": {
@@ -20,9 +20,18 @@
     "start": "node bin/cli.js"
   },
   "keywords": [
-    "qa", "testing", "automation", "skills",
-    "cursor", "copilot", "claude", "windsurf",
-    "codex", "cline", "opencode", "gemini",
+    "qa",
+    "testing",
+    "automation",
+    "skills",
+    "cursor",
+    "copilot",
+    "claude",
+    "windsurf",
+    "codex",
+    "cline",
+    "opencode",
+    "gemini",
     "agent-skills"
   ],
   "license": "GPL-3.0-only",

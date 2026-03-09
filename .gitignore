@@ -6,5 +6,6 @@ coverage/
 test-results/
 playwright-report/
 .allure-results/
-installer/skills/
+skills/
 .cursor/plans/
+.qa-skills.json

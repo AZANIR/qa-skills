@@ -2,10 +2,10 @@
 
 /**
  * Copies skills from the monorepo source of truth (.cursor/skills/)
- * into installer/skills/ so they ship with the npm package.
+ * into skills/ so they ship with the npm package.
  *
  * Runs automatically as the `prebuild` npm script.
- * Only copies SKILL.md and references/ from each skill directory
+ * Only copies SKILL.md, references/, and templates/ from each skill directory
  * to keep the bundle lean.
  */
 
@@ -14,11 +14,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const SOURCE = path.resolve(__dirname, '..', '..', '.cursor', 'skills');
+const SOURCE = path.resolve(__dirname, '..', '.cursor', 'skills');
 const DEST = path.resolve(__dirname, '..', 'skills');
 
 if (!fs.existsSync(SOURCE)) {
-  console.log('⚠ Skills source not found at', SOURCE);
+  console.log('\u26a0 Skills source not found at', SOURCE);
   console.log('  Skipping bundle (bundled skills/ may already exist).');
   process.exit(0);
 }
@@ -56,7 +56,7 @@ for (const entry of entries) {
   count++;
 }
 
-console.log(`Bundled ${count} skills into installer/skills/`);
+console.log(`Bundled ${count} skills into skills/`);
 
 function copyDirRecursive(src, dest) {
   fs.mkdirSync(dest, { recursive: true });
