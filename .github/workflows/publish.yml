@@ -1,4 +1,4 @@
-name: Publish QA-Skills to npm
+name: Publish QA-Skills to npm and GitHub Packages
 
 on:
   release:
@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   id-token: write
+  packages: write
 
 jobs:
   publish:
@@ -19,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
 
       - run: npm install -g npm@latest
 
@@ -72,6 +73,39 @@ jobs:
         run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # GitHub Packages requires scoped names (@owner/pkg). Restore manifests after publish
+      # so the repo stays on unscoped npm names (create-qa-skills / qa-skills).
+      - name: Backup package manifests before GitHub Packages publish
+        run: |
+          cp package.json /tmp/root-pkg.json
+          cp packages/qa-skills/package.json /tmp/wrapper-pkg.json
+
+      - name: Publish @azanir/create-qa-skills to GitHub Packages
+        run: |
+          npm pkg set name=@azanir/create-qa-skills
+          npm pkg set publishConfig.registry=https://npm.pkg.github.com
+          npm publish --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish @azanir/qa-skills to GitHub Packages
+        working-directory: packages/qa-skills
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          VER="${TAG#v}"
+          npm pkg set name=@azanir/qa-skills
+          npm pkg set publishConfig.registry=https://npm.pkg.github.com
+          npm pkg delete dependencies.create-qa-skills
+          npm pkg set "dependencies.@azanir/create-qa-skills=^${VER}"
+          npm publish --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Restore package manifests after GitHub Packages publish
+        run: |
+          mv /tmp/root-pkg.json package.json
+          mv /tmp/wrapper-pkg.json packages/qa-skills/package.json
 
       - name: Update Changelog.md
         if: contains(github.event.release.tag_name, 'beta') == false
