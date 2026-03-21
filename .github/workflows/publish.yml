@@ -41,6 +41,12 @@ jobs:
       - name: Set version from release tag
         run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version --allow-same-version
 
+      - name: Sync qa-skills wrapper version
+        working-directory: packages/qa-skills
+        run: |
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version --allow-same-version
+          npm pkg set "dependencies.create-qa-skills=^${{ github.event.release.tag_name }}"
+
       - name: Determine npm tag
         id: npm_tag
         run: |
@@ -57,29 +63,18 @@ jobs:
             echo "tag=latest" >> $GITHUB_OUTPUT
           fi
 
-      - name: Publish create-qa-skills to npm
-        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Sync qa-skills wrapper version
-        working-directory: packages/qa-skills
-        run: |
-          npm version ${{ github.event.release.tag_name }} --no-git-tag-version --allow-same-version
-          npm pkg set "dependencies.create-qa-skills=^${{ github.event.release.tag_name }}"
-
-      - name: Publish qa-skills wrapper to npm
-        working-directory: packages/qa-skills
-        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # GitHub Packages requires scoped names (@owner/pkg). Restore manifests after publish
-      # so the repo stays on unscoped npm names (create-qa-skills / qa-skills).
+      # GitHub Packages first — setup-node only configures registry.npmjs.org; GHCR needs explicit .npmrc lines.
       - name: Backup package manifests before GitHub Packages publish
         run: |
           cp package.json /tmp/root-pkg.json
           cp packages/qa-skills/package.json /tmp/wrapper-pkg.json
+
+      - name: Configure npm auth for GitHub Packages
+        run: |
+          echo "@azanir:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish @azanir/create-qa-skills to GitHub Packages
         run: |
@@ -106,6 +101,17 @@ jobs:
         run: |
           mv /tmp/root-pkg.json package.json
           mv /tmp/wrapper-pkg.json packages/qa-skills/package.json
+
+      - name: Publish create-qa-skills to npm
+        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish qa-skills wrapper to npm
+        working-directory: packages/qa-skills
+        run: npm publish --provenance --tag ${{ steps.npm_tag.outputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update Changelog.md
         if: contains(github.event.release.tag_name, 'beta') == false

@@ -4,8 +4,8 @@
   "description": "Interactive CLI installer for QA Skills Ecosystem — install skills into Cursor, Claude Code, Codex, Cline, Copilot, Windsurf, and 5+ more agents",
   "type": "module",
   "bin": {
-    "create-qa-skills": "./bin/cli.js",
-    "qa-skills": "./bin/cli.js"
+    "create-qa-skills": "bin/cli.js",
+    "qa-skills": "bin/cli.js"
   },
   "files": [
     "bin/",
