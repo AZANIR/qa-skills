@@ -5,7 +5,7 @@
   <a href="https://github.com/AZANIR/qa-skills"><img src="https://img.shields.io/github/stars/AZANIR/qa-skills?style=flat-square&color=blue" alt="GitHub stars" /></a>
   <a href="https://github.com/AZANIR/qa-skills/blob/master/LICENSE"><img src="https://img.shields.io/github/license/AZANIR/qa-skills?style=flat-square" alt="license" /></a>
   <a href="https://github.com/AZANIR/qa-skills"><img src="https://img.shields.io/badge/Agent%20skills-57-6366f1?style=flat-square&logo=cursor&logoColor=white" alt="57 agent skills" /></a>
-  <a href="https://github.com/AZANIR/qa-skills/tree/master/.cursor/skills/playswag"><img src="https://img.shields.io/badge/OpenAPI-PlaySwag-45ba4b?style=flat-square" alt="PlaySwag — OpenAPI test coverage" /></a>
+  <a href="https://github.com/AZANIR/qa-skills/tree/master/.cursor/skills/qa-playswag"><img src="https://img.shields.io/badge/OpenAPI-PlaySwag-45ba4b?style=flat-square" alt="PlaySwag — OpenAPI test coverage" /></a>
 </p>
 
 57 specialized agent skills covering the full QA lifecycle — from requirements to test execution to reporting. Works with Cursor, Claude Code, Codex, Cline, GitHub Copilot, Windsurf, and more.

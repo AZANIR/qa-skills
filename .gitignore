@@ -6,6 +6,7 @@ coverage/
 test-results/
 playwright-report/
 .allure-results/
-skills/
+# Bundled npm output only (do not match .cursor/skills/)
+/skills/
 .cursor/plans/
 .qa-skills.json

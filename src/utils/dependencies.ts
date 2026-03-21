@@ -48,6 +48,10 @@ export const SKILL_DEPENDENCIES: Record<string, SkillDependency> = {
     recommended: ['coverage-analyzer'],
     reason: 'Uses coverage data in risk formula: Risk = Complexity x ChangeFreq x (1 - Coverage)',
   },
+  'playswag': {
+    recommended: ['api-contract-curator'],
+    reason: 'Formal OpenAPI specs pair well with coverage analysis against tests',
+  },
   'flaky-detector': {
     recommended: ['test-healer'],
     reason: 'Test healer auto-fixes issues that flaky detector identifies',

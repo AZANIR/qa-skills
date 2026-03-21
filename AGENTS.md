@@ -71,12 +71,13 @@ Multi-tool agent definitions for the QA automation skills ecosystem. Each skill 
 
 ---
 
-## Reporting (6 agents)
+## Reporting (7 agents)
 
 | Agent | Description | Scope | Key Capabilities |
 |-------|-------------|-------|------------------|
 | `qa-test-reporter` | Aggregate and report test results | JUnit, JSON, Allure, CI output | HTML/markdown reports, trend analysis |
 | `qa-coverage-analyzer` | Requirements, technique, and code coverage | RTM, ISO 29119-4, Istanbul/JaCoCo | Coverage dashboard, gap analysis |
+| `qa-playswag` | OpenAPI/Swagger vs test files — API endpoint coverage | Static regex scan of tests | HTML reports, QA tasks, JUnit gate, CI badge |
 | `qa-bug-ticket-creator` | Generate bug reports from failures | GitHub Issues, Jira, Linear | Severity/priority, evidence, duplicate detection |
 | `qa-task-creator` | Create work tasks from QA analysis | Standalone or paired with bug-ticket | Dev, QA, docs, enhancement tasks |
 | `qa-risk-analyzer` | Risk-based testing prioritization | Impact analysis, risk index | Risk matrix, testing recommendations |
