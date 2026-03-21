@@ -5,8 +5,8 @@
  * into skills/ so they ship with the npm package.
  *
  * Runs automatically as the `prebuild` npm script.
- * Only copies SKILL.md, references/, and templates/ from each skill directory
- * to keep the bundle lean.
+ * Copies SKILL.md, references/, templates/, and scripts/ (when present) from each
+ * skill directory. Optional: README.md and *.png in the skill root (e.g. banners).
  */
 
 import fs from 'node:fs';
@@ -51,6 +51,24 @@ for (const entry of entries) {
   const templatesDir = path.join(srcDir, 'templates');
   if (fs.existsSync(templatesDir) && fs.statSync(templatesDir).isDirectory()) {
     copyDirRecursive(templatesDir, path.join(destDir, 'templates'));
+  }
+
+  const scriptsDir = path.join(srcDir, 'scripts');
+  if (fs.existsSync(scriptsDir) && fs.statSync(scriptsDir).isDirectory()) {
+    copyDirRecursive(scriptsDir, path.join(destDir, 'scripts'));
+  }
+
+  const skillReadme = path.join(srcDir, 'README.md');
+  if (fs.existsSync(skillReadme)) {
+    fs.copyFileSync(skillReadme, path.join(destDir, 'README.md'));
+  }
+
+  for (const f of fs.readdirSync(srcDir)) {
+    if (!f.endsWith('.png')) continue;
+    const p = path.join(srcDir, f);
+    if (fs.statSync(p).isFile()) {
+      fs.copyFileSync(p, path.join(destDir, f));
+    }
   }
 
   count++;

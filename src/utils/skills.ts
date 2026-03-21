@@ -37,8 +37,8 @@ export const SKILL_CATEGORIES: Record<string, string[]> = {
     'pact-writer', 'mobile-test-writer',
   ],
   'Reporting & Analysis': [
-    'test-reporter', 'coverage-analyzer', 'bug-ticket-creator',
-    'task-creator', 'risk-analyzer', 'spec-auditor',
+    'test-reporter', 'coverage-analyzer', 'playswag',
+    'bug-ticket-creator', 'task-creator', 'risk-analyzer', 'spec-auditor',
   ],
   'Orchestration': ['orchestrator'],
   'Support & Maintenance': [

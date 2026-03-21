@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/items": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Item" }
+            }
+          }
+        },
+        "responses": { "201": { "description": "created" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Item": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "count": { "type": "number" }
+        }
+      }
+    }
+  }
+}
