@@ -1,6 +1,14 @@
 # QA Skills Ecosystem
 
-56 specialized agent skills covering the full QA lifecycle — from requirements to test execution to reporting. Works with Cursor, Claude Code, Codex, Cline, GitHub Copilot, Windsurf, and more.
+<p align="center">
+  <a href="https://github.com/AZANIR/qa-skills/releases"><img src="https://img.shields.io/github/v/release/AZANIR/qa-skills?style=flat-square&color=cb3837&label=release" alt="GitHub release" /></a>
+  <a href="https://github.com/AZANIR/qa-skills"><img src="https://img.shields.io/github/stars/AZANIR/qa-skills?style=flat-square&color=blue" alt="GitHub stars" /></a>
+  <a href="https://github.com/AZANIR/qa-skills/blob/master/LICENSE"><img src="https://img.shields.io/github/license/AZANIR/qa-skills?style=flat-square" alt="license" /></a>
+  <a href="https://github.com/AZANIR/qa-skills"><img src="https://img.shields.io/badge/Agent%20skills-57-6366f1?style=flat-square&logo=cursor&logoColor=white" alt="57 agent skills" /></a>
+  <a href="https://github.com/AZANIR/qa-skills/tree/master/.cursor/skills/playswag"><img src="https://img.shields.io/badge/OpenAPI-PlaySwag-45ba4b?style=flat-square" alt="PlaySwag — OpenAPI test coverage" /></a>
+</p>
+
+57 specialized agent skills covering the full QA lifecycle — from requirements to test execution to reporting. Works with Cursor, Claude Code, Codex, Cline, GitHub Copilot, Windsurf, and more.
 
 ## Quick Start
 
@@ -32,12 +40,12 @@ npx skills add owner/qa-skills
 | **Python Test Writers** | 5 | pytest, Playwright, Selenium, Robot Framework, httpx |
 | **Java Test Writers** | 4 | JUnit 5, Selenium, REST Assured, Spring Boot |
 | **Performance & Specialized** | 8 | k6, Locust, JMeter, security (OWASP), accessibility (WCAG 2.2), visual regression, Pact contracts, mobile (Appium) |
-| **Reporting & Analysis** | 6 | Test reports, coverage analysis, bug tickets, task creation, risk analysis, spec audit |
+| **Reporting & Analysis** | 7 | Test reports, coverage analysis, OpenAPI vs tests (playswag), bug tickets, task creation, risk analysis, spec audit |
 | **Orchestration** | 1 | Pipeline coordinator with 5 modes and 4 handoff chains |
 | **Support & Maintenance** | 7 | Test healer, changelog analyzer, flaky detector, test reviewer, data factory, environment checker, discovery interview |
 | **Integrations** | 6 | Qase.io, GitHub Issues, Jira, Linear, ClickUp, Shortcut |
 
-**Total: 56 skills, 169 reference files, 14 templates**
+**Total: 57 skills, 169 reference files, 14 templates**
 
 ## How It Works
 
@@ -156,7 +164,7 @@ Skills are powered by 6 MCP servers (configured in `.cursor/mcp.json`):
 ```
 qa-skills/
 ├── .cursor/
-│   ├── skills/              # 56 skill directories — source of truth
+│   ├── skills/              # 57 skill directories — source of truth
 │   ├── rules/               # Cursor rules (.mdc)
 │   └── mcp.json             # MCP server configuration
 ├── installer/               # create-qa-skills CLI (npm package)
