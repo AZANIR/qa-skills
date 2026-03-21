@@ -20,3 +20,12 @@
 
 
 **Full Changelog**: https://github.com/AZANIR/qa-skills/compare/3.1.0...3.1.1
+
+
+## Release 3.2.2
+
+## What's Changed
+* fix(ci): GitHub Packages auth via setup-node and github.token by @AZANIR in https://github.com/AZANIR/qa-skills/pull/9
+
+
+**Full Changelog**: https://github.com/AZANIR/qa-skills/compare/3.2.1...3.2.2
