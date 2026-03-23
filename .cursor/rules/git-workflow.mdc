@@ -1,5 +1,5 @@
 ---
-description: Git branching strategy and Conventional Commits for ArtStroy
+description: Git branching strategy and Conventional Commits for QA Skills Ecosystem
 alwaysApply: true
 ---
 
@@ -13,7 +13,7 @@ alwaysApply: true
 
 | Type | Pattern | Example |
 |---|---|---|
-| Article | `article/{slug}` | `article/playwright-visual-testing` |
+| Skill | `skill/{slug}` | `skill/qa-playwright-ts-writer` |
 | Feature | `feat/{short-description}` | `feat/add-search-filters` |
 | Bug fix | `fix/{short-description}` | `fix/broken-og-image` |
 | Design/UI | `style/{short-description}` | `style/card-hover-effects` |
@@ -48,7 +48,7 @@ All commit messages follow the [Conventional Commits](https://www.conventionalco
 
 | Type | When to use |
 |---|---|
-| `feat` | New feature or new article |
+| `feat` | New feature or new skill |
 | `fix` | Bug fix |
 | `docs` | Documentation only |
 | `style` | CSS, design, formatting (no logic change) |
@@ -57,13 +57,13 @@ All commit messages follow the [Conventional Commits](https://www.conventionalco
 | `test` | Adding or updating tests |
 | `ci` | CI/CD pipeline changes (deploy.yml, Docker) |
 | `chore` | Maintenance, dependency updates, config |
-| `content` | Article content edits (not new articles) |
+| `content` | Skill content edits (not new skills) |
 
 ### Scopes (optional)
 
 | Scope | Applies to |
 |---|---|
-| `article` | Blog article content |
+| `skill` | Skill content |
 | `ui` | Frontend components |
 | `layout` | Astro layouts |
 | `seo` | Meta tags, schema.org, sitemap |
@@ -75,14 +75,14 @@ All commit messages follow the [Conventional Commits](https://www.conventionalco
 ### Examples
 
 ```
-feat(article): add Playwright visual testing guide
+feat(skill): add Playwright visual testing guide
 fix(ui): card image overflow on mobile
 style(layout): update footer spacing and colors
 docs: update pipeline documentation
-refactor(ui): extract ArticleCard into separate component
+refactor(ui): extract SkillCard into separate component
 ci(docker): optimize multi-stage build
 chore(deps): update astro to 5.4.2
-content(article): fix typos in OWASP article
+content(skill): fix typos in OWASP skill
 feat(skill): add conventional-commits skill
 ```
 
