@@ -85,7 +85,7 @@ Multi-tool agent definitions for the QA automation skills ecosystem. Each skill 
 
 ---
 
-## Support (6 agents)
+## Support (7 agents)
 
 | Agent | Description | Scope | Key Capabilities |
 |-------|-------------|-------|------------------|
@@ -95,6 +95,7 @@ Multi-tool agent definitions for the QA automation skills ecosystem. Each skill 
 | `qa-test-reviewer` | Code review for tests | Structure, assertions, anti-patterns | Code-smell catalog, before/after |
 | `qa-data-factory` | Generate realistic test data | Fixtures, factories, faker | Seeds, test data generation |
 | `qa-environment-checker` | Verify test environment readiness | Services, DB, accounts, configs | Environment validation |
+| `qa-project-memory` | QA project memory with auto-update and archive | Bugs, decisions, test log, regressions, environments, known issues | Auto-record after every task, dedup, cross-references, archive with index, search |
 
 ---
 
@@ -108,7 +109,7 @@ Multi-tool agent definitions for the QA automation skills ecosystem. Each skill 
 
 ## Handoff Chains
 
-- **Full E2E:** requirements-generator → spec-writer → diagram-generator → testcase-from-docs → playwright-ts-writer → test-healer → test-reviewer → test-reporter
-- **UI-first:** browser-data-collector → testcase-from-ui → playwright-ts-writer → test-healer → coverage-analyzer → task-creator
-- **API-first:** api-contract-curator → testcase-from-docs → supertest/httpx-writer → pact-writer → test-reporter
-- **Stabilization:** flaky-detector → test-healer → test-reviewer → changelog-analyzer → regression scope
+- **Full E2E:** requirements-generator → spec-writer → diagram-generator → testcase-from-docs → playwright-ts-writer → test-healer → test-reviewer → test-reporter → **project-memory:update**
+- **UI-first:** browser-data-collector → testcase-from-ui → playwright-ts-writer → test-healer → coverage-analyzer → task-creator → **project-memory:update**
+- **API-first:** api-contract-curator → testcase-from-docs → supertest/httpx-writer → pact-writer → test-reporter → **project-memory:update**
+- **Stabilization:** flaky-detector → test-healer → test-reviewer → changelog-analyzer → regression scope → **project-memory:update**

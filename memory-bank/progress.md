@@ -1,13 +1,14 @@
 # Progress
 
-## Current Status: ALL PHASES COMPLETE
+## Current Status: ALL PHASES COMPLETE + v2.1 QA PROJECT MEMORY
 
 ### Final Totals
-- **56 skills** with SKILL.md
-- **169 reference files** across all skills
+- **58 skills** with SKILL.md
+- **174 reference files** across all skills
 - **14 template files** in skills
 - **3 Cursor rules** (.mdc)
 - **6 memory-bank files**
+- **8 qa-memory files** in `docs/qa-memory/` (+ `_archive/`)
 - **6 MCP servers** configured
 - **2 tool-agnostic entrypoints** (AGENTS.md, CLAUDE.md)
 - **1 installer CLI** (@qa-skills/installer)
@@ -64,9 +65,18 @@
 ### Phase 6: Distribution (1 package) -- COMPLETE
 - [x] @qa-skills/installer CLI (npm, multi-editor: Cursor, VS Code, Claude Code, Windsurf, Zed)
 
-### Support Skills (6 skills) -- COMPLETE
+### Support Skills (7 skills) -- COMPLETE
 - [x] qa-test-healer, qa-changelog-analyzer, qa-flaky-detector
 - [x] qa-test-reviewer, qa-data-factory, qa-environment-checker
+- [x] qa-project-memory (auto-update, archive, search, bilingual EN/UA triggers)
+
+### v2.1: QA Project Memory -- COMPLETE
+- [x] `.cursor/skills/qa-project-memory/SKILL.md` + 5 reference files
+- [x] `docs/qa-memory/` — 6 memory files + `_index.md` + `_archive/`
+- [x] CLAUDE.md — Post-Task Memory Protocol (MANDATORY)
+- [x] AGENTS.md — qa-project-memory agent + updated handoff chains
+- [x] qa-orchestrator — memory update as final step in all chains
+- [x] memory-bank — activeContext.md + progress.md updated
 
 ## Remaining Low-Priority Items
 - [ ] Add evals/evals.json to skills (quality standard compliance)

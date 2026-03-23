@@ -1,7 +1,7 @@
 # QA Skills Ecosystem
 
 ## Project Overview
-This is a QA automation skills ecosystem for Cursor IDE. It contains 45+ specialized agent skills covering the full QA lifecycle: documentation, test case design, test writing (TypeScript + Python + specialized), reporting, analysis, and orchestration.
+This is a QA automation skills ecosystem for Cursor IDE. It contains 58 specialized agent skills covering the full QA lifecycle: documentation, test case design, test writing (TypeScript + Python + specialized), reporting, analysis, orchestration, and project memory.
 
 ## Architecture
 - Skills live in `.cursor/skills/qa-{name}/SKILL.md`
@@ -10,6 +10,7 @@ This is a QA automation skills ecosystem for Cursor IDE. It contains 45+ special
 - API keys stored in `.env` (never hardcode)
 - Templates in `templates/`
 - Memory bank in `memory-bank/`
+- QA project memory in `docs/qa-memory/` (auto-updated after every QA task)
 
 ## Skill Quality Standards
 Every skill MUST include:
@@ -29,6 +30,7 @@ Every skill MUST include:
 - Task creator works standalone AND paired with bug-ticket-creator
 - Playwright writers support record mode (live browser generation)
 - Test healer auto-fixes broken selectors/assertions
+- Project memory auto-records every QA task result to docs/qa-memory/ (MANDATORY)
 
 ## Languages & Frameworks
 - TypeScript: Jest, Vitest, Playwright, Cypress, WebdriverIO, CodeceptJS, Supertest

@@ -39,19 +39,19 @@ See `references/pipeline-modes.md` for detailed configurations.
 ## Formalized Handoff Chains
 
 ### Chain 0 — Discovery → Full E2E
-`discovery-interview` → `requirements-generator` → `spec-writer` → `diagram-generator` → `testcase-from-docs` → `playwright-ts-writer` → `test-healer` (if fail) → `test-reviewer` → `test-reporter`
+`discovery-interview` → `requirements-generator` → `spec-writer` → `diagram-generator` → `testcase-from-docs` → `playwright-ts-writer` → `test-healer` (if fail) → `test-reviewer` → `test-reporter` → **`project-memory:update`**
 
 ### Chain 1 — Full E2E
-`requirements-generator` → `spec-writer` → `diagram-generator` → `testcase-from-docs` → `playwright-ts-writer` → `test-healer` (if fail) → `test-reviewer` → `test-reporter`
+`requirements-generator` → `spec-writer` → `diagram-generator` → `testcase-from-docs` → `playwright-ts-writer` → `test-healer` (if fail) → `test-reviewer` → `test-reporter` → **`project-memory:update`**
 
 ### Chain 2 — UI-first
-`browser-data-collector` → `testcase-from-ui` → `playwright-ts-writer` → `test-healer` → `coverage-analyzer` → `task-creator` (for gaps)
+`browser-data-collector` → `testcase-from-ui` → `playwright-ts-writer` → `test-healer` → `coverage-analyzer` → `task-creator` (for gaps) → **`project-memory:update`**
 
 ### Chain 3 — API-first
-`api-contract-curator` → `testcase-from-docs` → `supertest-writer` / `httpx-writer` → `pact-writer` → `test-reporter`
+`api-contract-curator` → `testcase-from-docs` → `supertest-writer` / `httpx-writer` → `pact-writer` → `test-reporter` → **`project-memory:update`**
 
 ### Chain 4 — Stabilization
-`flaky-detector` → `test-healer` → `test-reviewer` → `changelog-analyzer` → regression scope
+`flaky-detector` → `test-healer` → `test-reviewer` → `changelog-analyzer` → regression scope → **`project-memory:update`**
 
 See `references/handoff-chains.md` for input/output contracts per step.
 
@@ -90,7 +90,8 @@ Uses Memory MCP for cross-session persistence:
 3. **Route** — Select chain or pipeline per mode
 4. **Execute** — Invoke skills in sequence; pass outputs as inputs
 5. **Persist** — Store state via Memory MCP
-6. **Output** — Final artifact (report, tests, docs) + summary
+6. **Record** — Auto-update `docs/qa-memory/` via `qa-project-memory` (final chain step)
+7. **Output** — Final artifact (report, tests, docs) + summary
 
 ## Scope
 
