@@ -18,6 +18,7 @@ End-to-end flow from requirements to test report.
 | 6 | qa-test-healer | Failed test run + test files | Healed selectors/assertions |
 | 7 | qa-test-reviewer | Test files | Review feedback, improvements |
 | 8 | qa-test-reporter | Test results (JUnit/Allure) | HTML/MD report, status |
+| 9 | **qa-project-memory** | Results from all previous steps | Memory entries (test-log, bugs, decisions) |
 
 **Conditional:** Step 6 (test-healer) runs only when step 5 execution fails.
 
@@ -35,6 +36,7 @@ Exploration-driven flow from live app to gap tasks.
 | 4 | qa-test-healer | Failed tests | Healed tests |
 | 5 | qa-coverage-analyzer | Tests + codebase | Coverage gaps, recommendations |
 | 6 | qa-task-creator | Coverage gaps | Tasks for missing coverage |
+| 7 | **qa-project-memory** | Results from all previous steps | Memory entries (test-log, bugs, regressions) |
 
 ---
 
@@ -50,6 +52,7 @@ Contract-driven API testing flow.
 | 3b | qa-httpx-writer | Test cases (Python project) | httpx/pytest API tests |
 | 4 | qa-pact-writer | Consumer/provider contracts | Pact contract tests |
 | 5 | qa-test-reporter | API test results | Report |
+| 6 | **qa-project-memory** | Results from all previous steps | Memory entries (test-log, decisions) |
 
 **Branch:** 3a for TypeScript; 3b for Python. Selection based on project context.
 
@@ -66,6 +69,17 @@ Flaky test and regression stabilization flow.
 | 3 | qa-test-reviewer | Healed tests | Review feedback |
 | 4 | qa-changelog-analyzer | Git history, changelog | Regression scope |
 | 5 | (output) | Regression scope | Scope for regression plan |
+| 6 | **qa-project-memory** | Results from all previous steps | Memory entries (regressions, bugs, test-log) |
+
+---
+
+## Memory Update Step (final in every chain)
+
+| Field | Value |
+|---|---|
+| **Input** | Results from all previous chain steps |
+| **Action** | 1. Scan output of each step 2. Write summary to test-log.md 3. If bugs found → bugs.md 4. If tests broke → regressions.md 5. If decisions made → decisions.md 6. Check archive thresholds → rotate if needed 7. Update _index.md |
+| **Output** | Confirmation + count of new/updated entries |
 
 ---
 
