@@ -29,3 +29,13 @@
 
 
 **Full Changelog**: https://github.com/AZANIR/qa-skills/compare/3.2.1...3.2.2
+
+
+## Release 3.2.3
+
+## What's Changed
+* refactor(config): adapt git-workflow rule to QA Skills Ecosystem by @AZANIR in https://github.com/AZANIR/qa-skills/pull/10
+* Feat/qa project memory by @AZANIR in https://github.com/AZANIR/qa-skills/pull/11
+
+
+**Full Changelog**: https://github.com/AZANIR/qa-skills/compare/3.2.2...3.2.3
